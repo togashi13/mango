@@ -1,4 +1,4 @@
- 
+#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -48,6 +48,9 @@ int main(){
   double precision;
   do
   {
+    cout.setf(ios::fixed);
+    cout.setf(ios::showpoint);    
+    cout.precision(6);
     printMenu();
     cin >> yourChoice;
     if (yourChoice == 1)
@@ -58,8 +61,8 @@ int main(){
       cin >> startX >> endX;
       cout << "Enter the number of rectangles to use: ";
       cin >> numRects;
-      cout << "Rectangle result is: " <<  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
-		                                                   startX, endX, numRects) << endl;
+      cout << "Rectangle result is: " << approximateAreaWithRect(aCoeff, bCoeff,
+		      cCoeff, dCoeff, startX, endX, numRects) << endl;
 
     }
     else if (yourChoice == 2)
@@ -156,10 +159,10 @@ double approximateAreaWithRect(double aCoeff,
   double integral = 0;
   double rectWidth = (endX - startX)/numRects;
   double rectHeight = 0;
-  double xValue;
+  double xValue;//x-coordinaties of the mid point of the rectangles
   for (int i = 0; i < numRects; i++)
   {
-    xValue = startX + (i + 1/2) * rectWidth;
+    xValue = startX + (i + 0.5) * rectWidth;
     if (evaluateCubicFormula(aCoeff, bCoeff, cCoeff, dCoeff,
 			    xValue, rectHeight))
     {
@@ -172,5 +175,4 @@ double approximateAreaWithRect(double aCoeff,
     integral += rectArea;
   }
 }
-
 
