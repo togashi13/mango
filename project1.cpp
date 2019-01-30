@@ -48,42 +48,26 @@ int main(){
   double precision;
   do
   {
-    yourChoice = 3;// if user input value that is not 1, 2, or 3, exit.
     printMenu();
     cin >> yourChoice;
     if (yourChoice == 1)
     {
       cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d:" << endl;
-//      cin >> aCoeff;
-//      cin >> bCoeff;
-//      cin >> cCoeff;
-//      cin >> dCoeff;
       cin >> aCoeff >> bCoeff >> cCoeff >> dCoeff;      
       cout << "Now enter x start and end values: ";
-//      cin >> startX;
-//      cin >> endX;
       cin >> startX >> endX;
       cout << "Enter the number of rectangles to use: ";
       cin >> numRects;
-      cout << "Rectangle result is: " <<  approximateAreaWithRect(aCoeff,
-                                                                  bCoeff,
-                                                                  cCoeff,
-                                                                  dCoeff,
-                                                                  startX,
-                                                                  endX,
-                                                                  numRects) << endl;
+      cout << "Rectangle result is: " <<  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
+		                                                   startX, endX, numRects) << endl;
 
     }
     else if (yourChoice == 2)
     {
       cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d:" << endl;
-      cin >> aCoeff;
-      cin >> bCoeff;
-      cin >> cCoeff;
-      cin >> dCoeff;
+      cin >> aCoeff >> bCoeff >> cCoeff >> dCoeff;
       cout << "Now enter x start and end values: ";
-      cin >> startX;
-      cin >> endX;
+      cin >> startX >> endX;
       cout << "Enter correct answer: ";
       cin >> correctAns;
       cout << "Enter precision to reach: ";
@@ -93,13 +77,8 @@ int main(){
       {
         if ( i <= 101)
         {
-          approxErr =  approximateAreaWithRect( aCoeff,
-                                                bCoeff,
-                                                cCoeff,
-                                                dCoeff,
-                                                startX,
-                                                endX,
-                                                i) - correctAns;
+          approxErr =  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
+			  startX, endX, i) - correctAns;
           approxNumRects = i;
           i++;
         }
