@@ -40,7 +40,6 @@ int main(){
   double startX;
   double endX;
   int    numRects;
-  int    resultVal;
   double approxErr;
   int    approxNumRects;
   int    yourChoice;
