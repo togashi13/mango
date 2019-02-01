@@ -1,4 +1,3 @@
-#include <iomanip>
 #include <iostream>
 using namespace std;
 
@@ -8,7 +7,7 @@ using namespace std;
 //between the curve and x axis using rectangles, and get the number
 //of rectangles to reach a required precision.
 
-void printMenu();
+void printMenu();//print a menu of choices available for users to choose from
 
 double toThePower(double val,
                   int    power);
@@ -48,9 +47,6 @@ int main()
   int    yourChoice;
   double correctAns;
   double precision;
-  cout.setf(ios::fixed);
-  cout.setf(ios::showpoint);    
-  cout.precision(6);
   printMenu();
   cout << "YOUR CHOICE: ";
   cin >> yourChoice;
@@ -82,7 +78,7 @@ int main()
       cin >> correctAns;
       cout << "Enter precision to reach: ";
       cin >> precision;
-      int i = 1; // loop initializtion
+      int i = 1;
       do
       {
         approxErr =  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
