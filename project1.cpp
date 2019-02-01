@@ -52,7 +52,7 @@ int main()
   cout.setf(ios::showpoint);    
   cout.precision(6);
   printMenu();
-  cout << "Your Choice: ";
+  cout << "YOUR CHOICE: ";
   cin >> yourChoice;
 
   while (yourChoice != 3)
@@ -69,7 +69,7 @@ int main()
                  approximateAreaWithRect(aCoeff, bCoeff,
 		      cCoeff, dCoeff, startX, endX, numRects) << endl;
       printMenu();
-      cout << "Your Choice: ";
+      cout << "YOUR CHOICE: ";
       cin >> yourChoice;
     }
     else if (yourChoice == 2)
@@ -103,14 +103,14 @@ int main()
         cout << "Tried 100 rectangles without reaching precision" << endl;
       }
       printMenu();
-      cout << "Your Choice: ";
+      cout << "YOUR CHOICE: ";
       cin >> yourChoice;
     }
     else
     {
       cout << "Invalid choice, please refer to menu" << endl;
       printMenu();
-      cout << "Your Choice: ";
+      cout << "YOUR CHOICE: ";
       cin >> yourChoice;
     }
   }
