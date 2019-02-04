@@ -1,12 +1,13 @@
-#include <iomanip>
 #include <iostream>
 using namespace std;
 
 //Programmer: Zhengtao Cai
 //Date: 1/26/2019
-//Code for project 1 EECS 402
-//Why is the user name before $ different every time
-void printMenu();
+//Code for project 1 EECS 402, allow users to approximate the area
+//between the curve and x axis using rectangles, and get the number
+//of rectangles to reach a required precision.
+
+void printMenu();//print a menu of choices available for users to choose from
 
 double toThePower(double val,
                   int    power);
@@ -32,42 +33,44 @@ double approximateAreaWithRect(double aCoeff,
 #include "andrewTest.h"
 #else
 
-int main(){
+int main()
+{
   double aCoeff;
   double bCoeff;
   double cCoeff;
-  double dCoeff;
+  double dCoeff;//coefficient of the cubic function
   double startX;
-  double endX;
+  double endX;  //the interval of to be approximated between
   int    numRects;
-  int    resultVal;
   double approxErr;
-  int    approxNumRects;
+  int    approxNumRects;//rectangles needed for the required precision
   int    yourChoice;
   double correctAns;
   double precision;
-  do
+  printMenu();
+  cout << "YOUR CHOICE: ";
+  cin >> yourChoice;
+
+  while (yourChoice != 3)
   {
-    cout.setf(ios::fixed);
-    cout.setf(ios::showpoint);    
-    cout.precision(6);
-    printMenu();
-    cin >> yourChoice;
     if (yourChoice == 1)
     {
-      cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d:" << endl;
+      cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d: ";
       cin >> aCoeff >> bCoeff >> cCoeff >> dCoeff;      
       cout << "Now enter x start and end values: ";
       cin >> startX >> endX;
       cout << "Enter the number of rectangles to use: ";
       cin >> numRects;
-      cout << "Rectangle result is: " << approximateAreaWithRect(aCoeff, bCoeff,
+      cout << "Rectangle result is: " <<
+                 approximateAreaWithRect(aCoeff, bCoeff,
 		      cCoeff, dCoeff, startX, endX, numRects) << endl;
-
+      printMenu();
+      cout << "YOUR CHOICE: ";
+      cin >> yourChoice;
     }
     else if (yourChoice == 2)
     {
-      cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d:" << endl;
+      cout << "Enter (a b c d) for funtion y = a*x^3 + b*x^2 + c*x + d: ";
       cin >> aCoeff >> bCoeff >> cCoeff >> dCoeff;
       cout << "Now enter x start and end values: ";
       cin >> startX >> endX;
@@ -75,40 +78,40 @@ int main(){
       cin >> correctAns;
       cout << "Enter precision to reach: ";
       cin >> precision;
-      int i = 1; // loop initializtion
+      int i = 1;
       do
       {
-        if ( i <= 101)
-        {
-          approxErr =  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
+        approxErr =  approximateAreaWithRect(aCoeff, bCoeff, cCoeff, dCoeff,
 			  startX, endX, i) - correctAns;
-          approxNumRects = i;
-          i++;
-        }
-         else
-        {
-          cout << "Tried 100 rectangles without reaching precision" << endl;
-          break;
-        }
+        approxNumRects = i;
+        i++;
       }
-      while (toThePower(approxErr,2) > toThePower(precision,2));
+      while ((toThePower(approxErr,2) > toThePower(precision,2)) && (i <= 101));
+      //allow 101 rectangles to determine if
+      //100 rectangles were precise enough
       if (approxNumRects <= 100)
       {
-        cout << "Rectangles needed to reach precision: " << approxNumRects << endl;
-      }	
-    }
-    else if (yourChoice == 3)
-    {
-      cout << "Thanks for using this program" << endl;
-      return 0;
+        cout << "Rectangles needed to reach precision: "
+                 << approxNumRects << endl;
+      } 
+      else
+      {
+        cout << "Tried 100 rectangles without reaching precision" << endl;
+      }
+      printMenu();
+      cout << "YOUR CHOICE: ";
+      cin >> yourChoice;
     }
     else
     {
       cout << "Invalid choice, please refer to menu" << endl;
+      printMenu();
+      cout << "YOUR CHOICE: ";
+      cin >> yourChoice;
     }
   }
-  while (true);
-
+  cout << "Thanks for using this program" << endl;
+  return 0;
 }
 
 
@@ -119,7 +122,6 @@ void printMenu()
   cout << "1 Approximate Integral Using Rectangles" << endl;
   cout << "2 Experiment with Rectangle Precision" << endl;
   cout << "3 Quit The Program" << endl;
-  cout << "Your Choice: " << endl;
 }
 
 double toThePower(double val,
@@ -168,7 +170,7 @@ double approximateAreaWithRect(double aCoeff,
     {
       rectArea = rectWidth * rectHeight;
     }
-    else
+    else//add the positive value of the rectangle area when y is negative
     {
       rectArea = rectWidth * rectHeight * (-1);
     }
