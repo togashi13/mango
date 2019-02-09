@@ -1,5 +1,4 @@
 #include <iostream>
-//#include <iomanip>
 using namespace std;
 
 //Programmer: Zhengtao Cai
@@ -35,7 +34,7 @@ double approximateAreaWithRect(double aCoeff,
 #else
 
 int main()
-{
+{ 
   double aCoeff;
   double bCoeff;
   double cCoeff;
@@ -113,7 +112,7 @@ int main()
       // cout << "YOUR CHOICE: ";
       // cin >> yourChoice;
     }
-    printMenu();
+    printMenu();//RESUBMISSION CODE UPDATE: move printMenu outside of if-else
     cout << "YOUR CHOICE: ";
     cin >> yourChoice;
   }
